@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I'm Sorry ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffdce6,#fff4f7,#ffeef2);
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#444;
+}
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:auto;
+    padding:50px 0;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:35px;
+    margin:30px 0;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(255,105,140,.18);
+}
+
+.hero h1{
+    font-family:'Dancing Script',cursive;
+    font-size:58px;
+    color:#e63973;
+    margin:10px 0;
+}
+
+.hero h2,
+.card h2{
+    color:#d6336c;
+    margin-bottom:10px;
+}
+
+p{
+    line-height:1.8;
+    margin:15px 0;
+}
+
+button{
+    margin-top:20px;
+    padding:14px 28px;
+    border:none;
+    border-radius:30px;
+    background:#e63973;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    background:#cc2f65;
+}
+
+.hidden{
+    display:none;
+}
+
+.signature{
+    margin-top:25px;
+    font-weight:600;
+    color:#d6336c;
+}
+
+.promise-box{
+    background:#fff0f5;
+    border-left:5px solid #e63973;
+    padding:20px;
+    border-radius:12px;
+    text-align:left;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:15px;
+}
+
+.yes{
+    background:#2ecc71;
+}
+
+.yes:hover{
+    background:#27ae60;
+}
+
+.no{
+    background:#e74c3c;
+    position:relative;
+}
+
+.response{
+    margin-top:25px;
+    color:#d6336c;
+    font-size:24px;
+    min-height:35px;
+}
+
+.fade{
+    animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Floating Hearts */
+
+.hearts::before,
+.hearts::after{
+    content:"❤️ ❤️ ❤️ ❤️ ❤️";
+    position:fixed;
+    width:100%;
+    font-size:22px;
+    animation:float 18s linear infinite;
+    opacity:.15;
+}
+
+.hearts::after{
+    top:50%;
+    animation-duration:24s;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+    </style>
+</head>
+<body>
+
+  <div class="hearts"></div>
+
+  <main class="container">
+
+    <section class="hero card fade">
+      <h2>To My Beautiful Girlfriend</h2>
+      <h1>Taonga ❤️</h1>
+      <p>
+        This little website has only one purpose...
+        to tell you how truly sorry I am.
+      </p>
+
+      <button id="startBtn">Open My Heart</button>
+    </section>
+
+    <section id="letter" class="card hidden">
+      <h2>My Letter 💌</h2>
+
+      <p>
+        My Love,
+      </p>
+
+      <p>
+        I'm genuinely sorry for hurting you. I know that saying "sorry"
+        doesn't instantly fix everything, and I'm not expecting it to.
+        I just want you to know that your feelings matter to me.
+      </p>
+
+      <p>
+        You deserve patience, kindness, and honesty. I know I fall short
+        alot of times, but I promise I'll keep choosing growth over pride and
+        understanding over ego from now on.
+      </p>
+
+      <p>
+        Thank you for loving me, laughing with me, and being my peace even
+        on difficult days. I never want to take that for granted.
+      </p>
+
+      <p class="signature">
+        Forever yours,<br>
+        Kunda ❤️
+      </p>
+
+      <button id="nextBtn">One More Thing...</button>
+    </section>
+
+    <section id="promise" class="card hidden">
+      <h2>My Promise 🌹</h2>
+
+      <div class="promise-box">
+        I can't promise perfection, but I can promise effort.
+        I'll keep learning how to love you better every single day.
+      </div>
+
+      <div class="question">
+        <p>Can I have one chance to make you smile?</p>
+
+        <div class="buttons">
+          <button id="yesBtn" class="yes">Yes ❤️</button>
+          <button id="noBtn" class="no">No 🙈</button>
+        </div>
+      </div>
+
+      <h3 id="response" class="response"></h3>
+    </section>
+
+  </main>
+
+  <script>
+
+    const startBtn = document.getElementById("startBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const letter = document.getElementById("letter");
+const promise = document.getElementById("promise");
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+const response = document.getElementById("response");
+
+// Reveal letter
+startBtn.addEventListener("click", () => {
+    letter.classList.remove("hidden");
+    letter.scrollIntoView({ behavior: "smooth" });
+});
+
+// Reveal promise
+nextBtn.addEventListener("click", () => {
+    promise.classList.remove("hidden");
+    promise.scrollIntoView({ behavior: "smooth" });
+});
+
+// Sweet response
+yesBtn.addEventListener("click", () => {
+    response.innerHTML = "You just made my heart smile. I love you so much ❤️";
+    createBurst();
+});
+
+// Playful moving button
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+function moveButton(){
+    const x = Math.random() * 180 - 90;
+    const y = Math.random() * 80 - 40;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Heart celebration
+function createBurst(){
+
+    for(let i=0;i<25;i++){
+
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+
+        heart.style.position="fixed";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.top="100vh";
+        heart.style.fontSize=(18+Math.random()*22)+"px";
+        heart.style.pointerEvents="none";
+        heart.style.transition="transform 3s linear, opacity 3s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.style.transform=`translateY(-120vh) rotate(${Math.random()*360}deg)`;
+            heart.style.opacity="0";
+        },20);
+
+        setTimeout(()=>heart.remove(),3000);
+    }
+}
+  </script>
+</body>
+</html>
